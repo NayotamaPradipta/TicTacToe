@@ -6,9 +6,9 @@ void end();
 
 // Additional Functions
 
-void updateBoard();
-void drawBoard();
-void changePlayer();
 void setPosition();
-bool isWinner();
+void updateBoard();
+void changePlayer();
+void drawBoard();
+bool isNotDraw();
 bool isFull();
