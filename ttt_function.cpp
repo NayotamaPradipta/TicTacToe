@@ -4,10 +4,12 @@
 using namespace std;
 // Initialize each board cells with empty string
 string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
-int player = 1; // Player 1 will be first to play 
+int player = 1; // Player 1 will be first to play
 int position = 0;
-
-void start(){
+bool player1 = false;
+bool player2 = false;
+void start()
+{
     cout << "Press [Enter] to start: ";
     cin.ignore();
     cout << "\n";
@@ -25,7 +27,7 @@ void start(){
     cout << "| |_| | (__| || (_| | (__| || (_) |  __/\n";
     cout << " \\__|_|\\___|\\__\\__,_|\\___|\\__\\___/ \\___|\n";
 
-    cout << "Player 1) ✖\n";
+    cout << "Player 1) X\n";
     cout << "Player 2) ⊙\n\n";
     cout << "The Image Below is the TicTacToe Board!\n\n";
 
@@ -38,16 +40,19 @@ void start(){
     cout << "     |     |      \n";
     cout << "  7  |  8  |  9   \n";
     cout << "     |     |      \n\n";
-
 }
 
-void setPosition(){
-    while (!(cin >> position)){
-        cout << "Player " << player << ", please enter a valid number between 1 and 9: ";
+void setPosition()
+{
+    cout << "Player " << player << ", please enter a valid number between 1 and 9: ";
+    while (!(cin >> position))
+    {
+
         cin.clear();
         cin.ignore();
     }
-    while (board[position-1] != " ") { // Player inputs a number that has been occupied with either an 'X' or 'O'
+    while (board[position - 1] != " ")
+    { // Player inputs a number that has been occupied with either an 'X' or 'O'
         cout << "The particular board cell is occupied!\n\n";
         cout << "Player " << player << ", please re-enter an empty/available cell (Enter 1-9): ";
         cin >> position;
@@ -55,25 +60,33 @@ void setPosition(){
     }
 }
 
-
-void updateBoard(){
+void updateBoard()
+{
     // Function to insert the symbol depending on which player is currently playing
-    if (player % 2 == 1) {
-        board[position-1] = "✖";
-    } else {
-        board[position-1] = "⊙";
+    if (player % 2 == 1)
+    {
+        board[position - 1] = "X";
+    }
+    else
+    {
+        board[position - 1] = "O";
     }
 }
 
-void changePlayer(){
-    if (player == 1) { 
+void changePlayer()
+{
+    if (player == 1)
+    {
         player += 1; // Change to Player 2
-    } else {
+    }
+    else
+    {
         player -= 1; // Revert back to Player 1
     }
 }
 
-void drawBoard(){
+void drawBoard()
+{
     // Function to draw the updated version of the board
     cout << "     |     |      \n";
     cout << "  " << board[0] << "  |  " << board[1] << "  |  " << board[2] << "\n";
@@ -87,28 +100,150 @@ void drawBoard(){
     cout << "\n";
 }
 
-bool isNotDraw(){
+bool isNotDraw()
+{
     // Check Horizontally
-    if (board[0] == board[1] && board[1] == board[2] && board[1] != " "){
-        if (board[1] == "✖"){
-            cout << "Player 1 Wins!\n";
-        } else {
-            cout << "Player 2 Wins!\n";
+    if (board[0] == board[1] && board[1] == board[2] && board[1] != " ")
+    {
+        if (board[1] == "X")
+        {
+            player1 = true;
+        }
+        else
+        {
+            player2 = true;
         }
         return true;
-    } else if (board[3] == board[4] && board[4] == board[5] && board[4] != " ") {
-        if (board[4] == "✖"){
-            cout << "Player 1 Wins!\n";
-        } else {
-            cout << "Player 2 Wins!\n";
+    }
+    else if (board[3] == board[4] && board[4] == board[5] && board[4] != " ")
+    {
+        if (board[1] == "X")
+        {
+            player1 = true;
+        }
+        else
+        {
+            player2 = true;
         }
         return true;
-    } else if (board[6] == board[7] && board[7] == board[8] && board[7] != " ") {
-        if (board[7] == "✖"){
-            cout << "Player 1 Wins!\n";
-        } else {
-            cout << "Player 2 Wins!\n";
+    }
+    else if (board[6] == board[7] && board[7] == board[8] && board[7] != " ")
+    {
+        if (board[1] == "X")
+        {
+            player1 = true;
         }
-    } 
+        else
+        {
+            player2 = true;
+        }
+        return true;
+    }
     // Check Vertically
+    else if (board[0] == board[3] && board[3] == board[6] && board[3] != " ")
+    {
+        if (board[1] == "X")
+        {
+            player1 = true;
+        }
+        else
+        {
+            player2 = true;
+        }
+        return true;
+    }
+    else if (board[1] == board[4] && board[4] == board[7] && board[4] != " ")
+    {
+        if (board[1] == "X")
+        {
+            player1 = true;
+        }
+        else
+        {
+            player2 = true;
+        }
+        return true;
+    }
+    else if (board[2] == board[5] && board[5] == board[8] && board[5] != " ")
+    {
+        if (board[1] == "X")
+        {
+            player1 = true;
+        }
+        else
+        {
+            player2 = true;
+        }
+        return true;
+    }
+    // Check Horizontally
+    else if (board[0] == board[4] && board[4] == board[8] && board[4] != " ")
+    {
+        if (board[1] == "X")
+        {
+            player1 = true;
+        }
+        else
+        {
+            player2 = true;
+        }
+        return true;
+    }
+    else if (board[2] == board[4] && board[4] == board[6] && board[4] != " ")
+    {
+        if (board[1] == "X")
+        {
+            player1 = true;
+        }
+        else
+        {
+            player2 = true;
+        }
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool isFull()
+{
+    bool full = true;
+    for (int i = 0; i < 9; i++)
+    {
+        if (board[i] == " ")
+        {
+            full = false;
+        }
+    }
+    return full;
+}
+
+void takeTurn()
+{
+    while (!isNotDraw() && !isFull())
+    {
+        setPosition();
+        updateBoard();
+        changePlayer();
+        drawBoard();
+    }
+}
+
+void end()
+{
+    if (isNotDraw())
+    {
+        if (player1){
+            cout << "Congratulation Player 1, You Win!\n";
+        }
+        else {
+            cout << "Congratulation Player 2, You Win!\n";
+        }
+    }
+    else
+    {
+        cout << "It's a tie!\n";
+    }
 }
